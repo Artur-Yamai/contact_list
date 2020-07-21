@@ -5,11 +5,39 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    validate: false,
+    logAndPass: {
+      login: 'login',
+      password: 'password'
+    }
   },
+
+  getters: {
+    validate: state => state.validate 
+  },
+
   mutations: {
+
+    dataComparison(state, {enteredLogin, enteredPassword}) {
+      let data = state.logAndPass;
+
+      if (data.login === enteredLogin && data.password === enteredPassword) {
+        state.validate = true;
+        console.log(true);
+      }
+
+    }
+
   },
+
   actions: {
+
+    DATA_COMPRARISON({commit}, payLoad) {
+      commit('dataComparison', payLoad)
+    }
+
   },
+
   modules: {
   }
 })

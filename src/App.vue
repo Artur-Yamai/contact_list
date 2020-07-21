@@ -1,32 +1,84 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view></router-view>
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-#nav {
-  padding: 30px;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+button {
+  border: none;
+  background-color: white;
+  outline: none;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  &:active {
+    box-shadow: inset 0 0 6px 0 rgb(88, 88, 88);
   }
 }
+
+input {
+  border: none;
+  outline: none;
+}
+
+ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+
+// глобальные классы
+
+.btn {
+  padding: 5px 30px;
+  border-radius: 4px;
+  background-color: lightgray;
+  cursor: pointer;
+
+  &:active {
+    box-shadow: inset 0 0 4px 2px darkgray;
+    border-radius: 4px;
+  }
+    
+  &__red {    
+    background-color: rgb(231, 41, 41);
+    color: white;
+  } 
+
+  &__green {
+    background: lightgreen;
+    color: white;
+  }
+
+  &__blue {
+    background-color: rgb(0, 191, 255);
+    color: white;
+  }
+
+  &__black {
+    background-color: rgb(46, 46, 46);
+    color: white;
+  }
+}
+
+.input-radius {
+  padding: 5px 16px;
+  border-radius: 16px;
+}
+
+
 </style>
