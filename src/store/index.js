@@ -9,7 +9,15 @@ export default new Vuex.Store({
     logAndPass: {
       login: 'login',
       password: 'password'
-    }
+    },
+
+    contactList: [
+      {
+        id: 0,
+        name: 'Name',
+        phone: '+79999999999',
+      }
+    ]
   },
 
   getters: {
