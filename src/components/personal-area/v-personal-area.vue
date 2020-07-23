@@ -5,16 +5,20 @@
       <h1 class="header__title">Contact list</h1>
     </header>
     
+    <v-search-contacts></v-search-contacts>
+    
     <v-contact-list></v-contact-list>
 
   </div>
 </template>
 
 <script>
+import vSearchContacts from './v-search-contacts'
 import vContactList from './v-contact-list'
 
 export default {
   components: {
+    vSearchContacts,
     vContactList
   }
   
