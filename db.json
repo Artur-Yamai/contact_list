@@ -1,0 +1,29 @@
+{
+  "contacts": [
+    {
+      "name": "Anna Yamaletdinova",
+      "phone": "+74654687",
+      "id": 1595750106669
+    },
+    {
+      "id": 1595750137798,
+      "name": "Oleg Bagauov",
+      "phone": "+7945565874687"
+    },
+    {
+      "id": 1595750152107,
+      "name": "Aliya Zainullina",
+      "phone": "+7645486"
+    },
+    {
+      "name": "Artur Yamaletdinov",
+      "phone": "+79646468",
+      "id": 1595751991394
+    },
+    {
+      "id": 1595754449828,
+      "name": "Regina Yakupova",
+      "phone": "+784687245"
+    }
+  ]
+}
