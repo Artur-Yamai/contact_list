@@ -43,6 +43,15 @@ li {
 
 // глобальные классы
 
+.block-without-scroll {
+  /* прячем боковой скроллбар */
+   -ms-overflow-style: none; /* ie 10+ */
+   overflow: -moz-scrollbars-none;/* FF */
+
+  /* хром, сафари */
+  &::-webkit-scrollbar { width: 0; }
+}
+
 .btn {
   padding: 5px 30px;
   border-radius: 4px;
