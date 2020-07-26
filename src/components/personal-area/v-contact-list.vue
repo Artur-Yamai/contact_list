@@ -1,11 +1,17 @@
 <template>
-  <div class="contact-list">
-    <v-contact-item></v-contact-item>
+  <div class="contact-list block-without-scroll">
+    <v-contact-item
+        v-for="contact in allContacts"
+        :key="contact.id"
+        :contact="contact"
+    ></v-contact-item>
   </div>
 </template>
 
 <script>
 import vContactItem from './v-contact-item'
+
+import {mapGetters} from 'vuex'
 
 export default {
   components: {
@@ -13,6 +19,11 @@ export default {
   },
 
   computed: {
+    ...mapGetters(['allContacts'])
+  },
+
+  created() {
+    this.$store.dispatch('GET_CONTACTS');
   }
   
 }
@@ -22,8 +33,9 @@ export default {
   
 .contact-list {
   width: 100%;
-  height: calc(100vh - 85px);
+  height: calc(100vh - 85px - 41px);
   background-color: rgb(227, 233, 255);
+  overflow: scroll;
 }
 
 </style>

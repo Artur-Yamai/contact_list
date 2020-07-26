@@ -1,16 +1,24 @@
 <template>
   <div class="search-contacts">
-    <input type="text"
-           class="search-contacts-input input-radius"
-           v-model="fieldValue"
-    >
-    <button class=" search-contacts-button btn btn__green"
-            @click.prevent="searchEnterValue"
-    >Search</button>
+    <form action="" @submit.prevent="searchEnterValue">
+      <input type="text"
+             class="search-contacts__input input-radius"
+             placeholder="search name"
+             v-model="fieldValue"
+      >
+      <button class=" search-contacts__button btn btn__green"
+              @click.prevent="searchEnterValue"
+      >Search</button>
+
+      <button class="btn btn__black"
+              @click.prevent="showAllContacts"
+      >All contacts</button>
+    </form>
   </div>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -20,9 +28,13 @@ export default {
 
   methods: {
     searchEnterValue() {
-      let users = this.$store.getters['searchContact'](this.fieldValue);
+      this.$store.dispatch('SEARCH_CONTACT', this.fieldValue)
+      
+      this.fieldValue = ''
+    },
 
-      this.$emit('foundContacts', users)
+    showAllContacts() {
+      this.$store.dispatch('GET_CONTACTS')
     }
   }
   
@@ -34,12 +46,8 @@ export default {
     padding: 8px 16px;
     background-color: hsl(195, 80%, 57%);
 
-    &__input {
-      width: 40%;
-    }
-
     &__button {
-
+      margin: 0 16px;
     }
   }
 </style>
