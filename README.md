@@ -1,24 +1,19 @@
 # personal_area
 
-## Project setup
-```
-npm install
-```
+нужен Vue-CLI
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Настройка проекта
 
-### Compiles and minifies for production
-```
-npm run build
-```
+$ npm install
 
-### Lints and fixes files
-```
-npm run lint
-```
+### после установки введите команды в терминале:
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+$ npm run serve
+$ json-server --watch db.json
+
+json-server на 3000 порту (должен быть по дефолту, но не лишним будет убедиться)
+
+### login: login | password: password (чтоб никто не догадался)
+
+
+
