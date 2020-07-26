@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import axios from 'axios'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -11,43 +13,24 @@ export default new Vuex.Store({
       password: 'password'
     },
 
-    contactList: [
-      {
-        id: 0,
-        name: 'Artur Yamaletdinov',
-        phone: '+79999999999',
-      },
-      {
-        id: 1,
-        name: 'Anna Yamaletdinov  ',
-        phone: '+79999999999',
-      },
-      {
-        id: 1,
-        name: 'Oleg Bagauov',
-        phone: '+79999999999',
-      },{
-        id: 1,
-        name: 'Aliya Zainullina',
-        phone: '+79999999999',
-      }
-    ],
-
-    foundOnRequest: []
+    contactList: []
   },
 
   getters: {
     validate: state => state.validate,
 
-    searchContact: state => function (name) {
+    allContacts: state => state.contactList,
+
+    searchContact: state => requestName => {
       let list = [];
 
       for (let contact of state.contactList) {
+        let lowerCaseName = contact.name.toLowerCase();
 
-        let hits = contact.name.indexOf(name)
+        let hits = lowerCaseName.indexOf(requestName.toLowerCase());
 
         if (hits >= 0) {
-          list.push(contact.name)
+          list.push(contact)
         }
       }
 
@@ -64,30 +47,52 @@ export default new Vuex.Store({
         state.validate = true;
         console.log(true);
       }
+
     },
 
-    searchContacts(state, searchName) {
+    getContacts(state, allContact) {
+      state.contactList = allContact;
+    },
 
-      for (let contact of state.contactList) {
+    deleteContact(state, contactID) {
+      let contact = state.contactList.find(contact => contact.id === contactID)
+      let index = state.contactList.indexOf(contact);
 
-        let hits = contact.name.indexOf(searchName)
-
-        if (hits >= 0) {
-          state.foundOnRequest.push(contact.name)
-        }
-      }
+      state.contactList.splice(index, 1)
+    
     }
 
   },
 
   actions: {
 
+    GET_CONTACTS({commit}) {
+      axios('http://localhost:3000/contacts')
+        .then(resp => {
+          commit('getContacts', resp.data)
+        })
+    },
+
     DATA_COMPRARISON({commit}, payLoad) {
       commit('dataComparison', payLoad)
     },
 
-    SEARCH_CONTACTS({commit}, payLoad) {
-      commit('searchContacts', payLoad)
+    ADD_CONTACT({dispatch}, {name, phone}) {
+      axios.post('http://localhost:3000/contacts', {
+        id: +new Date, // костыль для создания уникального id
+        name: name,
+        phone: phone
+      }).then( () => {
+        dispatch('GET_CONTACTS')
+      })
+    },
+
+    DELETE_CONTACT({commit}, contactID) {
+      // удаляет контакт из БД
+      axios.delete(`http://localhost:3000/contacts/${contactID}/`)
+        //  случае успеха удаляет контакт из списка для отображения
+        .then(() => commit('deleteContact', contactID))
+        .catch(err => console.error(err));     
     }
 
   },
