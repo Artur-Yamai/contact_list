@@ -81,6 +81,7 @@ export default {
   width: 45px;
   text-align: center;
   background-color: rgb(0, 255, 0);
+  color: white;
   border-radius: 50px;
   cursor: pointer;
   z-index: 1;
